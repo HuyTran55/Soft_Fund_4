@@ -14,8 +14,27 @@ public class Person {
     private HashMap<Date, Integer> demeritPoints; // A variable that holds the demerit points with the offense day
     private boolean isSuspended;
 
+    // constructor
+    public Person(
+            String personID,
+            String firstName,
+            String lastName,
+            String address,
+            String birthdate,
+            HashMap<Date, Integer> demeritPoints,
+            boolean isSuspended
+    ) {
+        this.personID = personID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.birthdate = birthdate;
+        this.demeritPoints = demeritPoints;
+        this.isSuspended = isSuspended;
+    }
+
     // addPerson returns true on successful creation, false otherwise (fails conditions)
-    public boolean addPerson (String personID, String address, String birthdate) {
+    public boolean addPerson () {
         //TODO: This method adds information about a person to a TXT file.
         System.out.println("Method - addPerson()");
         int n = personID.length();
@@ -50,7 +69,7 @@ public class Person {
 
         // ! Instruction: If the Person's information meets the above conditions and any other conditions you may want to consider,
         // * the information should be inserted into a TXT file, and the addPerson function should return true.
-        // * Otherwise, the information should not be inserted into the TXT file, and the addPerson function should return false.
+        // * Otherwise, the informationshould not be inserted into the TXT file, and the addPerson function should return false.
         String file_path = "src/main/java/au/edu/rmit/sct/test.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file_path))) {
             writer.write("ID: "+ personID + "\n");
@@ -63,6 +82,7 @@ public class Person {
 
         return true;
     }
+
     public boolean updatePersonalDetails () {
         //TODO: This method allows updating a given person's ID, firstName, lastName, address and birthday in a TXT file.
         // * Changing personal details will not affect their demerit points or the suspension status.
@@ -138,5 +158,61 @@ public class Person {
         }
 
         return true;
+    }
+
+    public String getID() {
+        return personID;
+    }
+
+    public void setID(String personID) {
+        this.personID = personID;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public HashMap<Date, Integer> getDemeritPoints() {
+        return demeritPoints;
+    }
+
+    public void setDemeritPoints(HashMap<Date, Integer> demeritPoints) {
+        this.demeritPoints = demeritPoints;
+    }
+
+    public boolean isSuspended() {
+        return isSuspended;
+    }
+
+    public void setSuspended(boolean suspended) {
+        isSuspended = suspended;
     }
 }
