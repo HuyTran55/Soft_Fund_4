@@ -1,10 +1,9 @@
 package au.edu.rmit.sct;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Date;
-import java.util.List;
+import java.text.ParseException;
+import java.util.*;
+import java.text.SimpleDateFormat;
 
 public class Person {
     private String personID;
@@ -32,6 +31,10 @@ public class Person {
         this.birthdate = birthdate;
         this.demeritPoints = demeritPoints;
         this.isSuspended = isSuspended;
+    }
+
+    public void clearTXTFile() {
+        writeFile(new ArrayList<>(), "src/main/java/au/edu/rmit/sct/test.txt", false);
     }
 
     /**
@@ -64,12 +67,12 @@ public class Person {
         // ! Condition 2: The address of the Person should follow the following format: Street Number|Street|City|State|Country.
         // * The State should be only Victoria. Example: 32|Highland Street |Melbourne|Victoria|Australia.
         String[] inputs = address.split("\\|");
-        if (!valid_address(inputs)) return false;
+        if (!validAddress(inputs)) return false;
         System.out.println("Passed Condition 2");
 
         // ! Condition 3: The format of the birthdate of the person should follow the following format: DD-MM-YYYY. Example: 15-11-1990
         inputs = birthdate.split("-");
-        if (!valid_birthdate(inputs)) return false;
+        if (!validBirthdate(inputs)) return false;
         System.out.println("Passed Condition 3");
 
         // ! Instruction: If the Person's information meets the above conditions and any other conditions you may want to consider,
@@ -143,16 +146,8 @@ public class Person {
 
         // ! Condition 1: If a person is under 18, their address cannot be changed.
         // ? if under 18 and address is being changed, return false?
-        Date current_date = new Date();
-        int year = current_date.getYear() + 1900;
-        int month = current_date.getMonth() + 1;
-        int day = current_date.getDate();
-
         String[] inputs = birthdate.split("-");
-        int difference = getDateDifference(
-                year, month, day,
-                Integer.parseInt(inputs[2]), Integer.parseInt(inputs[1]), Integer.parseInt(inputs[0])
-        );
+        int difference = ageInDays( Integer.parseInt(inputs[2]), Integer.parseInt(inputs[1]), Integer.parseInt(inputs[0]));
         // theres 6575 days in 18 years (5 leap) years, but theres only a 1 day difference if theres 4 leap years in the 18 years
         boolean adult = difference >= 6575;
         if (!adult && !address.equalsIgnoreCase(updatedDetails.getAddress())) {
@@ -223,20 +218,66 @@ public class Person {
         return true;
     }
 
-    public String addDemeritPoints () {
+    public String addDemeritPoints (String date, int points) throws ParseException, IOException {
         //TODO: This method adds demerit points for a given person in a TXT file.
 
         // ! Condition 1: The format of the date of the offense should follow the following format: DD-MM-YYYY. Example: 15-11-1990
+        String[] inputs = date.split("-");
+        if (inputs.length != 3) return "Failed";
+        int day = Integer.parseInt(inputs[0]), month = Integer.parseInt(inputs[1]), year = Integer.parseInt(inputs[2]);
+        if ((day < 1 || day > 31) || (month < 1 || month > 12) || (year < 1900 || year > 2025)) return "Failed";
+        System.out.println("Passed Condition 1");
 
         // ! Condition 2: The demerit points must be a whole number between 1-6
+        if (points < 1 || points > 6) return "Failed";
+        System.out.println("Passed Condition 2");
 
         // ! Condition 3: If the person is under 21, the isSuspended variable should be set to true if the total demerit points within two years exceed 6.
         // * If the person is over 21, the isSuspended variable should be set to true if the total demerit points within two years exceed 12.
+        int difference = ageInDays(year, month, day);
+        boolean over21 = difference > 7665;
+
+        int totalPoints = points;
+        for (Map.Entry<Date, Integer> point : demeritPoints.entrySet()) {
+            Date issued_date = point.getKey();
+            Integer issued_points = point.getValue();
+            difference = ageInDays(issued_date.getYear() + 1900, issued_date.getMonth() + 1, issued_date.getDate());
+            if (difference < 730) totalPoints += issued_points;
+        }
+
+        System.out.println("Total Demerit Points: " + totalPoints);
+        if (!over21 && totalPoints > 6) setSuspended(true);
+        else if (over21 && totalPoints > 12) setSuspended(true);
+        else setSuspended(false);
+        System.out.println("Passed Condition 3");
 
         // ! Instruction: If the above condiations and any other conditions you may want to consider are met, the demerit points for a person should be inserted into the TXT file,
         // * and the addDemeritPoints function should return "Sucess". Otherwise, the addDemeritPoints function should return "Failed".
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date issued_date = sdf.parse(date);
+        HashMap<Date, Integer> copy = (HashMap<Date, Integer>) demeritPoints.clone();
+        demeritPoints.put(issued_date, points);
+
+        String file_path = "src/main/java/au/edu/rmit/sct/test.txt";
+        List<String> lines = readFile(file_path, new ArrayList<>());
+        lines = changeDemerit(lines, copy);
+        writeFile(lines, file_path, false);
+        System.out.println("Update Demerit in TXT successful");
 
         return "Success";
+    }
+
+    public List<String> changeDemerit(List<String> lines, HashMap<Date, Integer> old) {
+        String old_line = "Demerit Points: " + old;
+        for (int i = 0; i < lines.size(); i++) {
+            String line = lines.get(i);
+            if (line.contains(old_line)) {
+                lines.set(i, "Demerit Points: " + demeritPoints);
+                break;
+            }
+        }
+
+        return lines;
     }
 
     public List<String> readFile(String file_path, List<String> lines) throws IOException {
@@ -273,7 +314,19 @@ public class Person {
         return updatedLines;
     }
 
-    public boolean valid_address(String[] inputs) {
+    public int ageInDays (int year, int month, int day) {
+        Date current_date = new Date();
+        int curr_year = current_date.getYear() + 1900;
+        int curr_month = current_date.getMonth() + 1;
+        int curr_day = current_date.getDate();
+
+        return getDateDifference(
+                curr_year, curr_month, curr_day,
+                year, month, day
+        );
+    }
+
+    public boolean validAddress(String[] inputs) {
         if (inputs.length != 5) return false;
         String number = inputs[0];
 
@@ -286,7 +339,7 @@ public class Person {
         return true;
     }
 
-    public boolean valid_birthdate(String[] inputs) {
+    public boolean validBirthdate(String[] inputs) {
         if (inputs.length != 3) return false;
         String date = inputs[0], month = inputs[1], year = inputs[2];
 
