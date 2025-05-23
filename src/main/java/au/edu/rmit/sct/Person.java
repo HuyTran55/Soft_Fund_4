@@ -218,6 +218,14 @@ public class Person {
         return true;
     }
 
+    /**
+     * this method just add (issues) more demerit points when given a date (dd-mm-yyyy) and amount of points and updates the txt file
+     * @param date
+     * @param points
+     * @return
+     * @throws ParseException
+     * @throws IOException
+     */
     public String addDemeritPoints (String date, int points) throws ParseException, IOException {
         //TODO: This method adds demerit points for a given person in a TXT file.
 
