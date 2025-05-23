@@ -1,3 +1,14 @@
 ID: 565_d%&fAB
+Full Name: John Smith
 Address: 32|Highland Street |Melbourne|Victoria|Australia
 DOB: 15-11-1990
+Demerit Points: {}
+Suspended License: false
+
+ID: 123_d%&fCD
+Full Name: Jane Doe
+Address: 12|Yomama Street |Melbourne|Victoria|Australia
+DOB: 29-05-1922
+Demerit Points: {}
+Suspended License: true
+

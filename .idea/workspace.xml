@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f400d6dc-4bf4-41c4-b679-80a87f6bf350" name="Changes" comment="addPerson() method implemented">
+    <list default="true" id="f400d6dc-4bf4-41c4-b679-80a87f6bf350" name="Changes" comment="switched to using constructor and setter getter methods">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/au/edu/rmit/sct/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/au/edu/rmit/sct/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/au/edu/rmit/sct/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/au/edu/rmit/sct/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/au/edu/rmit/sct/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/au/edu/rmit/sct/test.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +25,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -78,13 +83,22 @@
       <option name="project" value="LOCAL" />
       <updated>1747793533664</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="switched to using constructor and setter getter methods">
+      <option name="closed" value="true" />
+      <created>1747794475998</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1747794475998</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Imported template for code" />
     <MESSAGE value="addPerson() method implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="addPerson() method implemented" />
+    <MESSAGE value="switched to using constructor and setter getter methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="switched to using constructor and setter getter methods" />
   </component>
 </project>
