@@ -53,5 +53,6 @@ public class Main {
         System.out.println("Expected Output: true - Actual Output: " + Test3.addPerson());
 
         System.out.println("Expected Output: Success - Actual Output: " + Test3.addDemeritPoints("03-12-2022", 5));
+
     }
 }
