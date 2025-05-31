@@ -68,4 +68,9 @@ void testInvalidPersonIDTooShort() throws IOException {
         Person updated = new Person("56z_d%&fGH", "Charlie", "Smith", "32|Highland Street|Melbourne|Victoria|Australia", "01-01-1990", new HashMap<>(), false);
         assertFalse(original.updatePersonalDetails(updated));
     }
+    @Test
+    void testInvalidStateInAddress() throws IOException {
+        Person p = new Person("56s_d%&fAB", "John", "Doe", "32|Highland Street|Melbourne|NSW|Australia", "15-11-1990", new HashMap<>(), false);
+        assertFalse(p.addPerson());
+    }
 }

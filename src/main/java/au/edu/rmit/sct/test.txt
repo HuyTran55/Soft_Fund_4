@@ -54,3 +54,10 @@ DOB: 01-01-1990
 Demerit Points: {}
 Suspended License: false
 
+ID: 56s_d%&fAB
+Full Name: John Doe
+Address: 32|Highland Street|Melbourne|NSW|Australia
+DOB: 15-11-1990
+Demerit Points: {}
+Suspended License: false
+

@@ -335,17 +335,18 @@ public class Person {
     }
 
     public boolean validAddress(String[] inputs) {
-        if (inputs.length != 5) return false;
-        String number = inputs[0];
+    if (inputs.length != 5) return false;
 
-        // first input should always be a number for address number
-        // so if not a number doesn't follow format
-        for (int i = 0; i < number.length(); i++) {
-            if (!Character.isDigit(number.charAt(i))) return false;
-        }
-
-        return true;
+    // Check if the first part (Street Number) is a number
+    for (char c : inputs[0].toCharArray()) {
+        if (!Character.isDigit(c)) return false;
     }
+
+    // Ensure state is exactly "Victoria"
+    if (!inputs[3].trim().equalsIgnoreCase("Victoria")) return false;
+
+    return true;
+}
 
     public boolean validBirthdate(String[] inputs) {
         if (inputs.length != 3) return false;
