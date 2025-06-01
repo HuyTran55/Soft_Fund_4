@@ -121,7 +121,7 @@ public class PersonTests {
                                 "15-11-2007", new HashMap<>(), false);
                 p.addPerson();
 
-                assertEquals("Success", p.addDemeritPoints("20-1-2020", 5));
+                assertEquals("Success", p.addDemeritPoints("20-01-2020", 5));
         }
 
         // checks whether the date passed is of the correct format
@@ -143,7 +143,7 @@ public class PersonTests {
                                 "15-11-2007", new HashMap<>(), false);
                 p.addPerson();
 
-                assertEquals("Failed", p.addDemeritPoints("20-1-2020", 12));
+                assertEquals("Failed", p.addDemeritPoints("20-01-2020", 12));
         }
 
         // checks if under 21 and over 6 demerits, isSuspended should be set to true
@@ -154,8 +154,8 @@ public class PersonTests {
                                 "15-11-2007", new HashMap<>(), false);
                 p.addPerson();
 
-                assertEquals("Success", p.addDemeritPoints("20-1-2024", 3));
-                assertEquals("Success", p.addDemeritPoints("20-2-2025", 4));
+                assertEquals("Success", p.addDemeritPoints("20-01-2024", 3));
+                assertEquals("Success", p.addDemeritPoints("20-02-2025", 4));
                 assertTrue(p.getSuspended());
         }
 
@@ -167,10 +167,10 @@ public class PersonTests {
                                 "15-11-2007", new HashMap<>(), false);
                 p.addPerson();
 
-                assertEquals("Success", p.addDemeritPoints("20-1-2024", 3));
-                assertEquals("Success", p.addDemeritPoints("20-2-2025", 4));
-                assertEquals("Success", p.addDemeritPoints("20-3-2025", 4));
-                assertEquals("Success", p.addDemeritPoints("20-4-2025", 4));
+                assertEquals("Success", p.addDemeritPoints("20-01-2024", 3));
+                assertEquals("Success", p.addDemeritPoints("20-02-2025", 4));
+                assertEquals("Success", p.addDemeritPoints("20-03-2025", 4));
+                assertEquals("Success", p.addDemeritPoints("20-04-2025", 4));
                 assertTrue(p.getSuspended());
         }
 
