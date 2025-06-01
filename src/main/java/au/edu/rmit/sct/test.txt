@@ -9,55 +9,6 @@ ID: 123_d%&fCD
 Full Name: Jane Doe
 Address: 12|Yomama Street |Melbourne|Victoria|Australia
 DOB: 29-05-1922
-Demerit Points: {Fri May 23 20:16:29 AEST 2025=8, Sat Dec 03 00:00:00 AEDT 2022=5, Fri May 23 20:16:30 AEST 2025=1}
+Demerit Points: {Sun Jun 01 12:59:52 AEST 2025=8, Sat Dec 03 00:00:00 AEDT 2022=5, Sun Jun 01 12:59:53 AEST 2025=1}
 Suspended License: true
-
-ID: 56s_d%&fAB
-Full Name: Alicia Smith
-Address: 32|Highland Street|Melbourne|Victoria|Australia
-DOB: 15-11-1990
-Demerit Points: {}
-Suspended License: false
-
-ID: 56s_d%&fAB
-Full Name: John Doe
-Address: 32|Highland Street|Melbourne|NSW|Australia
-DOB: 15-11-1990
-Demerit Points: {}
-Suspended License: false
-
-ID: 56s_d%&fAB
-Full Name: Alice Smith
-Address: 32|Highland Street|Melbourne|Victoria|Australia
-DOB: 15-11-1990
-Demerit Points: {}
-Suspended License: false
-
-ID: 56s_d%&fAB
-Full Name: Alice Smith
-Address: 32|Highland Street|Melbourne|Victoria|Australia
-DOB: 15-11-1990
-Demerit Points: {}
-Suspended License: false
-
-ID: 56s_d%&fAB
-Full Name: Alice Smith
-Address: 32|Highland Street|Melbourne|Victoria|Australia
-DOB: 01-01-1990
-Demerit Points: {}
-Suspended License: false
-
-ID: 24a_d%&fYZ
-Full Name: Charlie Smith
-Address: 32|Highland Street|Melbourne|Victoria|Australia
-DOB: 01-01-1990
-Demerit Points: {}
-Suspended License: false
-
-ID: 56s_d%&fAB
-Full Name: John Doe
-Address: 32|Highland Street|Melbourne|NSW|Australia
-DOB: 15-11-1990
-Demerit Points: {}
-Suspended License: false
 

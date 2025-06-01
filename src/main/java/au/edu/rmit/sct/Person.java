@@ -22,8 +22,7 @@ public class Person {
             String address,
             String birthdate,
             HashMap<Date, Integer> demeritPoints,
-            boolean isSuspended
-    ) {
+            boolean isSuspended) {
         this.personID = personID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -39,45 +38,61 @@ public class Person {
 
     /**
      * this method appends a new person into the txt file
+     * 
      * @return
      * @throws IOException
      */
-    public boolean addPerson () throws IOException {
-        //TODO: This method adds information about a person to a TXT file.
+    public boolean addPerson() throws IOException {
+        // TODO: This method adds information about a person to a TXT file.
         System.out.println("Method - addPerson()");
         int n = personID.length();
 
         // ! Condition 1: PersonID should be exactly 10 characters long;
-        if (n != 10) return false;
+        if (n != 10)
+            return false;
 
-        // * the first two characters should be numbers between 2 and 9, there should be at least two special characters between characters 3 and 8,
-        if (!Character.isDigit(personID.charAt(0)) || !Character.isDigit(personID.charAt(1))) return false;
+        // * the first two characters should be numbers between 2 and 9, there should be
+        // at least two special characters between characters 3 and 8,
+        if (!Character.isDigit(personID.charAt(0)) || !Character.isDigit(personID.charAt(1)))
+            return false;
         int num_special = 0;
         String specialCharsRegex = "[^a-zA-Z0-9\\s]";
         for (int i = 2; i < n - 2; i++) {
             char curr_char = personID.charAt(i);
-            if (String.valueOf(curr_char).matches(specialCharsRegex)) num_special++;
+            if (String.valueOf(curr_char).matches(specialCharsRegex))
+                num_special++;
         }
-        if (!(num_special >= 2)) return false;
+        if (!(num_special >= 2))
+            return false;
 
-        // * and the last two characters should be upper case letters (A - Z). Example: "565_d%&fAB"
-        if (!Character.isUpperCase(personID.charAt(8)) || !Character.isUpperCase(personID.charAt(9))) return false;
+        // * and the last two characters should be upper case letters (A - Z). Example:
+        // "565_d%&fAB"
+        if (!Character.isUpperCase(personID.charAt(8)) || !Character.isUpperCase(personID.charAt(9)))
+            return false;
         System.out.println("Passed Condition 1");
 
-        // ! Condition 2: The address of the Person should follow the following format: Street Number|Street|City|State|Country.
-        // * The State should be only Victoria. Example: 32|Highland Street |Melbourne|Victoria|Australia.
+        // ! Condition 2: The address of the Person should follow the following format:
+        // Street Number|Street|City|State|Country.
+        // * The State should be only Victoria. Example: 32|Highland Street
+        // |Melbourne|Victoria|Australia.
         String[] inputs = address.split("\\|");
-        if (!validAddress(inputs)) return false;
+        if (!validAddress(inputs))
+            return false;
         System.out.println("Passed Condition 2");
 
-        // ! Condition 3: The format of the birthdate of the person should follow the following format: DD-MM-YYYY. Example: 15-11-1990
+        // ! Condition 3: The format of the birthdate of the person should follow the
+        // following format: DD-MM-YYYY. Example: 15-11-1990
         inputs = birthdate.split("-");
-        if (!validBirthdate(inputs)) return false;
+        if (!validBirthdate(inputs))
+            return false;
         System.out.println("Passed Condition 3");
 
-        // ! Instruction: If the Person's information meets the above conditions and any other conditions you may want to consider,
-        // * the information should be inserted into a TXT file, and the addPerson function should return true.
-        // * Otherwise, the information should not be inserted into the TXT file, and the addPerson function should return false.
+        // ! Instruction: If the Person's information meets the above conditions and any
+        // other conditions you may want to consider,
+        // * the information should be inserted into a TXT file, and the addPerson
+        // function should return true.
+        // * Otherwise, the information should not be inserted into the TXT file, and
+        // the addPerson function should return false.
 
         String file_path = "src/main/java/au/edu/rmit/sct/test.txt";
         List<String> lines = readFile(file_path, new ArrayList<>());
@@ -130,48 +145,57 @@ public class Person {
     }
 
     /**
-     * this method updates a Person object when given another Person object as a parameter
-     * E.G you want to update Person1, you pass through Person1_Update which will presumably would have different values for some variables
+     * this method updates a Person object when given another Person object as a
+     * parameter
+     * E.G you want to update Person1, you pass through Person1_Update which will
+     * presumably would have different values for some variables
      * Person1.updatePersonalDetails(Person1_Update)
+     * 
      * @param updatedDetails
      * @return true for successful updates, false for conditions failing
      * @throws IOException
      */
-    public boolean updatePersonalDetails (Person updatedDetails) throws IOException {
-        //TODO: This method allows updating a given person's ID, firstName, lastName, address and birthday in a TXT file.
-        // * Changing personal details will not affect their demerit points or the suspension status.
-        // * All relevant conditions discussed for the addPerson function also need to be considered and checked in the updatPerson function.
+    public boolean updatePersonalDetails(Person updatedDetails) throws IOException {
+        // TODO: This method allows updating a given person's ID, firstName, lastName,
+        // address and birthday in a TXT file.
+        // * Changing personal details will not affect their demerit points or the
+        // suspension status.
+        // * All relevant conditions discussed for the addPerson function also need to
+        // be considered and checked in the updatPerson function.
 
         System.out.println("Method - updatePersonalDetails()");
 
         // ! Condition 1: If a person is under 18, their address cannot be changed.
         // ? if under 18 and address is being changed, return false?
         String[] inputs = birthdate.split("-");
-        int difference = ageInDays( Integer.parseInt(inputs[2]), Integer.parseInt(inputs[1]), Integer.parseInt(inputs[0]));
-        // theres 6575 days in 18 years (5 leap) years, but theres only a 1 day difference if theres 4 leap years in the 18 years
+        int difference = ageInDays(Integer.parseInt(inputs[2]), Integer.parseInt(inputs[1]),
+                Integer.parseInt(inputs[0]));
+        // theres 6575 days in 18 years (5 leap) years, but theres only a 1 day
+        // difference if theres 4 leap years in the 18 years
         boolean adult = difference >= 6575;
         if (!adult && !address.equalsIgnoreCase(updatedDetails.getAddress())) {
             return false;
         }
         System.out.println("Passed Condition 1");
 
-        // ! Condition 2: If a person's birthday is going to be changed, then no other personal detail (i.e, person's ID, firstName, lastName, address) can be changed.
+        // ! Condition 2: If a person's birthday is going to be changed, then no other
+        // personal detail (i.e, person's ID, firstName, lastName, address) can be
+        // changed.
         // ? if birthday changing, and other details being updated, return false?
         boolean changeBirthday = !birthdate.equalsIgnoreCase(updatedDetails.getBirthdate());
-        boolean changeDetails = (
-                (!personID.equalsIgnoreCase(updatedDetails.getID())) ||
+        boolean changeDetails = ((!personID.equalsIgnoreCase(updatedDetails.getID())) ||
                 (!firstName.equalsIgnoreCase(updatedDetails.getFirstName())) ||
                 (!lastName.equalsIgnoreCase(updatedDetails.getLastName())) ||
-                (!address.equalsIgnoreCase(updatedDetails.getAddress()))
-        );
+                (!address.equalsIgnoreCase(updatedDetails.getAddress())));
         if (changeBirthday && changeDetails) {
             return false;
         }
         System.out.println("Passed Condition 2");
 
-        // ! Condition 3: If the first character/digit of a person's ID is an even number, then their ID cannot be changed.
+        // ! Condition 3: If the first character/digit of a person's ID is an even
+        // number, then their ID cannot be changed.
         // ? if even number, and id is being changed, return false?
-        boolean evenID = (int)personID.charAt(0) % 2 == 0;
+        boolean evenID = (int) personID.charAt(0) % 2 == 0;
         if (evenID && !personID.equalsIgnoreCase(updatedDetails.getID())) {
             return false;
         }
@@ -183,9 +207,12 @@ public class Person {
         }
         System.out.println("Passed Condition 4");
 
-        // ! Instruction: If the Person's updated information meets the above conditions and any other conditions you may want to consider,
-        // * the Person's information should be updated in the TXT file with the updated information, and the updatePersonalDetails function should return true.
-        // * Otherwise, the Person's updated information should not be updated in the TXT file, and the updatePersonalDetails function should return false.
+        // ! Instruction: If the Person's updated information meets the above conditions
+        // and any other conditions you may want to consider,
+        // * the Person's information should be updated in the TXT file with the updated
+        // information, and the updatePersonalDetails function should return true.
+        // * Otherwise, the Person's updated information should not be updated in the
+        // TXT file, and the updatePersonalDetails function should return false.
         String file_path = "src/main/java/au/edu/rmit/sct/test.txt";
 
         List<String> updatedLines = readFile(file_path, new ArrayList<>());
@@ -196,13 +223,15 @@ public class Person {
         }
         String newFirst = updatedDetails.getFirstName();
         if (!firstName.equalsIgnoreCase(newFirst)) {
-            updatedLines = changeLine(updatedLines, (firstName + " " + lastName), ("Full Name: " + newFirst + " " + lastName));
+            updatedLines = changeLine(updatedLines, (firstName + " " + lastName),
+                    ("Full Name: " + newFirst + " " + lastName));
             setFirstName(updatedDetails.getFirstName());
         }
 
         String newLast = updatedDetails.getLastName();
         if (!lastName.equalsIgnoreCase(newLast)) {
-            updatedLines = changeLine(updatedLines, (firstName + " " + lastName), ("Full Name: " + firstName + " " + newLast));
+            updatedLines = changeLine(updatedLines, (firstName + " " + lastName),
+                    ("Full Name: " + firstName + " " + newLast));
             setLastName(updatedDetails.getLastName());
         }
 
@@ -219,29 +248,37 @@ public class Person {
     }
 
     /**
-     * this method just add (issues) more demerit points when given a date (dd-mm-yyyy) and amount of points and updates the txt file
+     * this method just add (issues) more demerit points when given a date
+     * (dd-mm-yyyy) and amount of points and updates the txt file
+     * 
      * @param date
      * @param points
      * @return
      * @throws ParseException
      * @throws IOException
      */
-    public String addDemeritPoints (String date, int points) throws ParseException, IOException {
-        //TODO: This method adds demerit points for a given person in a TXT file.
+    public String addDemeritPoints(String date, int points) throws ParseException, IOException {
+        // TODO: This method adds demerit points for a given person in a TXT file.
 
-        // ! Condition 1: The format of the date of the offense should follow the following format: DD-MM-YYYY. Example: 15-11-1990
+        // ! Condition 1: The format of the date of the offense should follow the
+        // following format: DD-MM-YYYY. Example: 15-11-1990
         String[] inputs = date.split("-");
-        if (inputs.length != 3) return "Failed";
+        if (inputs.length != 3)
+            return "Failed";
         int day = Integer.parseInt(inputs[0]), month = Integer.parseInt(inputs[1]), year = Integer.parseInt(inputs[2]);
-        if ((day < 1 || day > 31) || (month < 1 || month > 12) || (year < 1900 || year > 2025)) return "Failed";
+        if ((day < 1 || day > 31) || (month < 1 || month > 12) || (year < 1900 || year > 2025))
+            return "Failed";
         System.out.println("Passed Condition 1");
 
         // ! Condition 2: The demerit points must be a whole number between 1-6
-        if (points < 1 || points > 6) return "Failed";
+        if (points < 1 || points > 6)
+            return "Failed";
         System.out.println("Passed Condition 2");
 
-        // ! Condition 3: If the person is under 21, the isSuspended variable should be set to true if the total demerit points within two years exceed 6.
-        // * If the person is over 21, the isSuspended variable should be set to true if the total demerit points within two years exceed 12.
+        // ! Condition 3: If the person is under 21, the isSuspended variable should be
+        // set to true if the total demerit points within two years exceed 6.
+        // * If the person is over 21, the isSuspended variable should be set to true if
+        // the total demerit points within two years exceed 12.
         int difference = ageInDays(year, month, day);
         boolean over21 = difference > 7665;
 
@@ -250,17 +287,24 @@ public class Person {
             Date issued_date = point.getKey();
             Integer issued_points = point.getValue();
             difference = ageInDays(issued_date.getYear() + 1900, issued_date.getMonth() + 1, issued_date.getDate());
-            if (difference < 730) totalPoints += issued_points;
+            if (difference < 730)
+                totalPoints += issued_points;
         }
 
         System.out.println("Total Demerit Points: " + totalPoints);
-        if (!over21 && totalPoints > 6) setSuspended(true);
-        else if (over21 && totalPoints > 12) setSuspended(true);
-        else setSuspended(false);
+        if (!over21 && totalPoints > 6)
+            setSuspended(true);
+        else if (over21 && totalPoints > 12)
+            setSuspended(true);
+        else
+            setSuspended(false);
         System.out.println("Passed Condition 3");
 
-        // ! Instruction: If the above condiations and any other conditions you may want to consider are met, the demerit points for a person should be inserted into the TXT file,
-        // * and the addDemeritPoints function should return "Sucess". Otherwise, the addDemeritPoints function should return "Failed".
+        // ! Instruction: If the above condiations and any other conditions you may want
+        // to consider are met, the demerit points for a person should be inserted into
+        // the TXT file,
+        // * and the addDemeritPoints function should return "Sucess". Otherwise, the
+        // addDemeritPoints function should return "Failed".
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date issued_date = sdf.parse(date);
         HashMap<Date, Integer> copy = (HashMap<Date, Integer>) demeritPoints.clone();
@@ -304,7 +348,8 @@ public class Person {
                 writer.write(line);
                 writer.newLine();
             }
-            if (extra_line) writer.newLine();
+            if (extra_line)
+                writer.newLine();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -322,7 +367,7 @@ public class Person {
         return updatedLines;
     }
 
-    public int ageInDays (int year, int month, int day) {
+    public int ageInDays(int year, int month, int day) {
         Date current_date = new Date();
         int curr_year = current_date.getYear() + 1900;
         int curr_month = current_date.getMonth() + 1;
@@ -330,48 +375,54 @@ public class Person {
 
         return getDateDifference(
                 curr_year, curr_month, curr_day,
-                year, month, day
-        );
+                year, month, day);
     }
 
     public boolean validAddress(String[] inputs) {
-    if (inputs.length != 5) return false;
+        if (inputs.length != 5)
+            return false;
+        String number = inputs[0];
 
-    // Check if the first part (Street Number) is a number
-    for (char c : inputs[0].toCharArray()) {
-        if (!Character.isDigit(c)) return false;
+        // first input should always be a number for address number
+        // so if not a number doesn't follow format
+        for (int i = 0; i < number.length(); i++) {
+            if (!Character.isDigit(number.charAt(i)))
+                return false;
+        }
+
+        if (!inputs[3].equalsIgnoreCase("Victoria")) {
+            return false;
+        }
+
+        return true;
     }
 
-    // Ensure state is exactly "Victoria"
-    if (!inputs[3].trim().equalsIgnoreCase("Victoria")) return false;
-
-    return true;
-}
-
     public boolean validBirthdate(String[] inputs) {
-        if (inputs.length != 3) return false;
+        if (inputs.length != 3)
+            return false;
         String date = inputs[0], month = inputs[1], year = inputs[2];
 
         // checking if vals are valid length
-        if (
-                (date.isEmpty() || date.length() > 2)
+        if ((date.isEmpty() || date.length() > 2)
                 || (month.isEmpty() || month.length() > 2)
-                || (year.isEmpty() || year.length() > 4)
-        )
+                || (year.isEmpty() || year.length() > 4))
             return false;
 
         // checking if all vals are numbers
         for (int i = 0; i < 2; i++) {
             char digit = date.charAt(i);
-            if (!Character.isDigit(digit)) return false;
+            if (!Character.isDigit(digit))
+                return false;
         }
         for (int i = 0; i < 2; i++) {
             char digit = month.charAt(i);
-            if (!Character.isDigit(digit)) return false;
+            if (!Character.isDigit(digit))
+                return false;
         }
         for (int i = 0; i < 4; i++) {
             char digit = year.charAt(i);
-            if (!Character.isDigit(digit)) return false;
+            if (!Character.isDigit(digit))
+                return false;
         }
 
         return true;
