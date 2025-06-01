@@ -164,7 +164,7 @@ public class PersonTests {
         void testOver21Suspension() throws IOException, ParseException {
                 Person p = new Person("56s_d%&fAB", "Bob", "Smith",
                                 "32|Highland Street|Melbourne|Victoria|Australia",
-                                "15-11-2007", new HashMap<>(), false);
+                                "15-11-2000", new HashMap<>(), false);
                 p.addPerson();
 
                 assertEquals("Success", p.addDemeritPoints("20-01-2024", 3));
