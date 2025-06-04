@@ -9,7 +9,7 @@ ID: 123_d%&fCD
 Full Name: Jane Doe
 Address: 12|Yomama Street |Melbourne|Victoria|Australia
 DOB: 29-05-1922
-Demerit Points: {Sun Jun 01 13:42:39 AEST 2025=8, Sat Dec 03 00:00:00 AEDT 2022=5, Sun Jun 01 13:42:40 AEST 2025=1}
+Demerit Points: {Wed Jun 04 17:51:07 AEST 2025=1, Sat Dec 03 00:00:00 AEDT 2022=5, Wed Jun 04 17:51:06 AEST 2025=8}
 Suspended License: true
 
 ID: 56s_d%&fAB
