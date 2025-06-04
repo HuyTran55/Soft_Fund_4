@@ -7,6 +7,8 @@
     <groupId>au.edu.rmit.sct</groupId>
     <artifactId>Assignment_4</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>Assignment 4</name>
+    <description>Java assignment project using Maven and JUnit 5</description>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
