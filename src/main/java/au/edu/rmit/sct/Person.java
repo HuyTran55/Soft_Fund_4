@@ -13,6 +13,7 @@ public class Person {
     private String birthdate;
     private HashMap<Date, Integer> demeritPoints; // A variable that holds the demerit points with the offense day
     private boolean isSuspended;
+    
 
     // constructor
     public Person(
