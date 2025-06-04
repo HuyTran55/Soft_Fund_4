@@ -2,7 +2,7 @@ ID: 565_d%&fAB
 Full Name: John Smith
 Address: 32|Highland Street |Melbourne|Victoria|Australia
 DOB: 15-11-1990
-Demerit Points: {}
+Demerit Points: {Sat Jan 20 00:00:00 AEDT 2024=3, Thu Feb 20 00:00:00 AEDT 2025=4}
 Suspended License: false
 
 ID: 123_d%&fCD
@@ -11,4 +11,81 @@ Address: 12|Yomama Street |Melbourne|Victoria|Australia
 DOB: 29-05-1922
 Demerit Points: {Sun Jun 01 13:42:39 AEST 2025=8, Sat Dec 03 00:00:00 AEDT 2022=5, Sun Jun 01 13:42:40 AEST 2025=1}
 Suspended License: true
+
+ID: 56s_d%&fAB
+Full Name: Bob Smith
+Address: 32|Highland Street|Melbourne|Victoria|Australia
+DOB: 15-11-2007
+Demerit Points: {Mon Jan 20 00:00:00 AEDT 2020=5}
+Suspended License: false
+
+ID: 56s_d%&fAB
+Full Name: Bob Smith
+Address: 32|Highland Street|Melbourne|Victoria|Australia
+DOB: 15-11-2007
+Demerit Points: {Sat Jan 20 00:00:00 AEDT 2024=3, Thu Feb 20 00:00:00 AEDT 2025=4}
+Suspended License: false
+
+ID: 56s_d%&fAB
+Full Name: Bob Smith
+Address: 32|Highland Street|Melbourne|Victoria|Australia
+DOB: 15-11-2010
+Demerit Points: {}
+Suspended License: false
+
+ID: 56s_d%&fAB
+Full Name: Bob Smith
+Address: 32|Highland Street|Melbourne|Victoria|Australia
+DOB: 15-11-2000
+Demerit Points: {}
+Suspended License: false
+
+ID: 56s_d%&fAB
+Full Name: Bob Smith
+Address: 32|Highland Street|Melbourne|Victoria|Australia
+DOB: 15-11-2007
+Demerit Points: {}
+Suspended License: false
+
+ID: 56s_d%&fAB
+Full Name: Bob Smith
+Address: 32|Highland Street|Melbourne|Victoria|Australia
+DOB: 15-11-2007
+Demerit Points: {}
+Suspended License: false
+
+ID: 24a_d%&fYZ
+Full Name: Charlie Smith
+Address: 32|Highland Street|Melbourne|Victoria|Australia
+DOB: 01-01-1990
+Demerit Points: {}
+Suspended License: false
+
+ID: 56s_d%&fAB
+Full Name: Bob Smith
+Address: 32|Highland Street|Melbourne|Victoria|Australia
+DOB: 15-11-2007
+Demerit Points: {}
+Suspended License: false
+
+ID: 56s_d%&fAB
+Full Name: Alicia Smith
+Address: 32|Highland Street|Melbourne|Victoria|Australia
+DOB: 01-01-1990
+Demerit Points: {}
+Suspended License: false
+
+ID: 56s_d%&fAB
+Full Name: Alice Smith
+Address: 32|Highland Street|Melbourne|Victoria|Australia
+DOB: 15-11-1990
+Demerit Points: {}
+Suspended License: false
+
+ID: 56s_d%&fAB
+Full Name: Alice Smith
+Address: 32|Highland Street|Melbourne|Victoria|Australia
+DOB: 15-11-1990
+Demerit Points: {}
+Suspended License: false
 
